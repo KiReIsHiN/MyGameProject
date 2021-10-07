@@ -10,8 +10,12 @@ public class Enemy : MonoBehaviour
 
     Animator _anim;
 
-    public int _zombieHP = 100;
-    [SerializeField] private float _speedZombie;
+    [SerializeField]
+    private int _zombieHP = 100;
+    [SerializeField]
+    private float _speedZombie;
+    [SerializeField]
+    private int _damageFromBullet = 25;
 
     private AudioSource _as;
 
@@ -47,7 +51,14 @@ public class Enemy : MonoBehaviour
         {
             _anim.SetBool("isAttack", true);
         }
+
+        if (other.CompareTag("Bullet"))
+        {
+            _zombieHP -= _damageFromBullet;
+        }
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {
